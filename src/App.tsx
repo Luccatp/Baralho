@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { CardMap } from './Components/cards-map/index.component';
+import INFO  from './card-data.json'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [cardInfo, setCardInfo] = useState(INFO)
+
+    const handleShuffle  = () => {
+      const cardsShuffle = cardInfo.sort((a, b) => b.key - a.key)
+      setCardInfo(cardsShuffle)
+      console.log(cardInfo)
+  }
+
+    return(
+      <CardMap handleShuffle={handleShuffle} cardInfo={cardInfo}/>
+    )
 }
 
 export default App;
